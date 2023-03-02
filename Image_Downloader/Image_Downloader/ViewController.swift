@@ -32,6 +32,12 @@ class ViewController: UIViewController {
     var progressBar3 = UIProgressView()
     var progressBar4 = UIProgressView()
     var progressBar5 = UIProgressView()
+    
+    let url1 = URL(string: "https://img.theqoo.net/img/sVJDV.jpg")
+    let url2 = URL(string: "https://fimg5.pann.com/new/download.jsp?FileID=55160461")
+    let url3 = URL(string: "https://t1.daumcdn.net/cfile/tistory/99100E425E69C6CB18")
+    let url4 = URL(string: "https://img.bntnews.co.kr/data/bnt/image/2022/08/19/bnt202208190128.680x.0.jpg")
+    let url5 = URL(string: "https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201702/18/htm_20170218114544126552.jpg")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +45,8 @@ class ViewController: UIViewController {
         addData()
         setLayout()
         
-        let url = URL(string: "https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201702/18/htm_20170218114544126552.jpg")
-        imageView1.load(url: url!)
+//        let url = URL(string: "https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201702/18/htm_20170218114544126552.jpg")
+//        imageView1.load(url: url!)
     }
     private func addLayout() {
         [button, vStackView].forEach { view.addSubview($0) }
@@ -63,10 +69,13 @@ class ViewController: UIViewController {
         }
         [imageView1, imageView2, imageView3, imageView4, imageView5].forEach {
             $0.image = UIImage(systemName: "photo")
+            $0.contentMode = .scaleAspectFit
         }
         [button, imageButton1, imageButton2, imageButton3, imageButton4, imageButton5].forEach {
             $0.backgroundColor = .systemBlue
+            $0.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
         }
+        
     }
     
     private func setLayout() {
@@ -156,7 +165,33 @@ class ViewController: UIViewController {
             $0.leading.equalTo(imageView5.snp.trailing).offset(30)
             $0.height.equalTo(5)
         }
-
+    }
+    
+    @objc func tapButton(button: UIButton) {
+        if button == imageButton1 {
+            imageView1.image = UIImage(systemName: "photo")
+            imageView1.load(url: url1!)
+        } else if button == imageButton2 {
+            imageView2.image = UIImage(systemName: "photo")
+            imageView2.load(url: url2!)
+        } else if button == imageButton3 {
+            imageView3.image = UIImage(systemName: "photo")
+            imageView3.load(url: url3!)
+        } else if button == imageButton4 {
+            imageView4.image = UIImage(systemName: "photo")
+            imageView4.load(url: url4!)
+        } else if button == imageButton5 {
+            imageView5.image = UIImage(systemName: "photo")
+            imageView5.load(url: url5!)
+        } else {
+            [imageView1, imageView2, imageView3, imageView4, imageView5].forEach { $0.image = UIImage(systemName: "photo") }
+            imageView1.load(url: url1!)
+            imageView2.load(url: url2!)
+            imageView3.load(url: url3!)
+            imageView4.load(url: url4!)
+            imageView5.load(url: url5!)
+        }
+        
     }
     
     
