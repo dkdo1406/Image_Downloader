@@ -10,7 +10,7 @@ import SnapKit
 
 class ViewController: UIViewController {
     let loadAllButton = UIButton()
-    var vStackView = UIStackView()
+    let vStackView = UIStackView()
     let hStackView1 = UIView()
     let hStackView2 = UIView()
     let hStackView3 = UIView()
@@ -135,6 +135,7 @@ class ViewController: UIViewController {
             default:
                 break
             }
+            
             bar.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
                 $0.trailing.equalTo(button.snp.leading)
@@ -161,6 +162,7 @@ class ViewController: UIViewController {
     }
 }
 
+// https://hongssup.tistory.com/158
 extension UIImageView {
     func load(url: URL) {
         self.image = UIImage(systemName: "photo")
